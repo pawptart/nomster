@@ -71,3 +71,5 @@ end
 
 # Gemfile for will_paginate for Rails 3+
 gem 'will_paginate', '~> 3.1.1'
+
+gem 'simple_form'
