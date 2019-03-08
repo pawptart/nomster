@@ -69,3 +69,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
 
+# Gemfile for will_paginate for Rails 3+
+gem 'will_paginate', '~> 3.1.1'
