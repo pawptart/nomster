@@ -38,55 +38,66 @@
       <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
     <% end %>
   </div>
+  <br />
+  <br />
+  <hr />
+
+
+  <div class="clear"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <h1 class="float-left">Comments</h1>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
+        Add a comment
+      </button>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="row">
+    <% @place.comments.each do |comment| %>
+      <div class="col-12 col-sm-6">
+        <blockquote>
+          <% if comment.humanized_rating.present? %>
+            <b class="float-right"><%= comment.humanized_rating %></b>
+          <% end %>
+          <%= comment.message %>
+          <br />
+          <small><%= "-- " + comment.user.email %></small>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
+
+  <hr />
+  <br />
+
+  <div class="row">
+    <div class="col-12">
+      <h1 class="float-left">Photos</h1>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal2">
+        Add a photo
+      </button>
+    </div>
+  </div>
 
   <br />
-</div>
 
-<div class="clear"></div>
-
-<div class="row">
-  <div class="col-10 offset-1">
-    <h1 class="float-left">Comments</h1>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
-      Add a comment
-    </button>
+  <div class="row">
+    <% @place.photos.each do |photo| %>
+      <div class="col-12 col-sm-3 text-center">
+        <div class="img-holder">
+          <a href="<%= photo.picture.url %>"><img src="<%= photo.picture.url %>" class="img-thumbnail"/></a>
+          <i><%= photo.caption %></i>
+        </div>
+        <br />
+      </div>
+    <% end %>
   </div>
-</div>
-
-<div class="clear"></div>
-
-<div class="row">
-  <% @place.comments.each do |comment| %>
-    <div class="col-12 col-sm-6">
-      <blockquote>
-        <% if comment.humanized_rating.present? %>
-          <b><%= comment.humanized_rating %></b>
-        <% end %>
-        <%= comment.message %>
-        <small><%= comment.user.email %></small>
-      </blockquote>
-    </div>
-  <% end %>
-</div>
-
-<div class="row">
-  <div class="col-10 offset-1">
-    <h1 class="float-left">Photos</h1>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal2">
-      Add a photo
-    </button>
-  </div>
-</div>
-
-<div class="row">
-  <% @place.photos.each do |photo| %>
-    <div class="col-12 col-sm-6">
-      <%= image_tag photo.picture.url class: 'img-thumbnail mx-auto' %>
-      <i><%= photo.caption %></i>
-    </div>
-  <% end %>
 </div>
 
 <!-- Modal for adding photos -->
