@@ -70,3 +70,32 @@ blockquote p {
   display: inline;
 }
 
+.img-holder {
+  width: 200px;
+  height: auto;
+  float: right;
+}
+
+.stars {
+  float: right;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .img-holder {
+    float: none;
+  }
+
+  .stars {
+    float: none;
+  }
+
+  .hidden {
+    display: block;
+  }
+}
+
+

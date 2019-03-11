@@ -1,6 +1,11 @@
 <%= will_paginate @places %>
-  <% @places.each do |place|  %>
+  <% @places.each do |place| %>
     <div class="booyah-box col-10 offset-1">
+      <% if place.photos.first.present? %>
+        <div class="img-holder">  
+          <img src="<%= place.photos.first.picture.url %>" class="img-thumbnail"/>
+        </div>
+      <% end %> 
       <h1><%= link_to place.name, place_path(place) %></h1>
       <i><%= place.address %></i><br /><br />
       <p><%= place.description %></p><br />
@@ -13,10 +18,12 @@
         <div class="col-12">
           <blockquote>
             <% if place.comments.last.humanized_rating.present? %>
-              <b><%= place.comments.last.humanized_rating %></b>
+              <b class="stars"><%= place.comments.last.humanized_rating %></b>
+              <br class="hidden" />
             <% end %>
             <%= place.comments.last.message %>
-            <small><%= place.comments.last.user.email %></small>
+            <br />
+            <small><%= "-- " + place.comments.last.user.email %></small>
           </blockquote>
         </div>
       <% end %>
